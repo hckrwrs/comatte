@@ -52,10 +52,12 @@ router.map({
   '/sign_up': {
     component: Vue.extend({
       template: '#sign_up',
-      data: function() {return {
-        icons: [],
-        sexes: [],
-      };},
+      data: function () {
+        return {
+          icons: [],
+          sexes: [],
+        };
+      },
       methods: {
         sign_up: function () {
           $.ajax({
