@@ -23,7 +23,7 @@
 
 <script id="g-header" type="text/template">
   <div class="main-header clearfix">
-    <a v-link="{ path: path }" class="pull-left btn btn-link"><i class="fa fa-arrow-left"></i></a>
+    <a v-if="path" v-link="{ path: path }" class="pull-left btn btn-link"><i class="fa fa-arrow-left"></i></a>
     <h3 class="no-margin" style="text-align:center;">{{ title }}</h3>
   </div>
 </script>
