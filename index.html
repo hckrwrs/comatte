@@ -1,40 +1,233 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Comatte</title>
+<head>
+<title>Comatte</title>
+
+<link href="public/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="public/css/font-awesome.min.css" rel="stylesheet">
+<link href="public/css/pace.css" rel="stylesheet">
+<link href="public/css/endless.min.css" rel="stylesheet">
+<link href="public/css/endless-skin.css" rel="stylesheet">
+</head>
+
+<body>
+  <div id="wrapper" class="preload">
+    <div id="top-nav" class="fixed skin-6">
+      <div class="brand">
+        <span>Comatte</span>
+      </div>
+    </div>
+
+    <div id="app">
+      <router-view></router-view>
+    </div>
+  </div>
+</body>
+
+<script id="sign_in" type="text/template">
+  <div class="login-wrapper">
+    <div class="text-center">
+      <h2 class="fadeInUp animation-delay8" style="font-weight:bold">
+        <span class="text-success">Endless</span> <span style="color:#ccc; text-shadow:0 1px #fff">Admin</span>
+      </h2>
+    </div>
+    <div class="login-widget animation-delay1">
+      <div class="panel panel-default">
+        <div class="panel-heading clearfix">
+          <div class="pull-left">
+            <i class="fa fa-lock fa-lg"></i> Login
+          </div>
+
+          <div class="pull-right">
+            <span style="font-size:11px;">Don't have any account?</span>
+            <a class="btn btn-default btn-xs login-link" href="register.html" style="margin-top:-2px;"><i class="fa fa-plus-circle"></i> Sign up</a>
+          </div>
+        </div>
+        <div class="panel-body">
+          <form class="form-login">
+            <div class="form-group">
+              <label>Username</label>
+              <input type="text" placeholder="Username" class="form-control input-sm bounceIn animation-delay2" >
+            </div>
+            <div class="form-group">
+              <label>Password</label>
+              <input type="password" placeholder="Password" class="form-control input-sm bounceIn animation-delay4">
+            </div>
+            <div class="form-group">
+              <label class="label-checkbox inline">
+                <input type="checkbox" class="regular-checkbox chk-delete" />
+                <span class="custom-checkbox info bounceIn animation-delay4"></span>
+              </label>
+              Remember me
+            </div>
+
+            <div class="seperator"></div>
+            <div class="form-group">
+              Forgot your password?<br/>
+              Click <a href="#">here</a> to reset your password
+            </div>
+
+            <hr/>
+
+            <a class="btn btn-success btn-sm bounceIn animation-delay5 login-link pull-right" href="index.html"><i class="fa fa-sign-in"></i> Sign in</a>
+          </form>
+        </div>
+      </div><!-- /panel -->
+    </div><!-- /login-widget -->
+  </div><!-- /login-wrapper -->
+
+</script>
+<script id="sign_up" type="text/template">
+  //TODO: html
+</script>
+<script id="guchis" type="text/template">
+  //TODO: html
+</script>
+<script id="guchi" type="text/template">
+  //TODO: html
+</script>
+<script id="replies" type="text/template">
+  <div class="padding-md">
+    <div class="chat chat-inner">
+      <div class="chat-header bg-white border-bottom padding-sm" style="height: 40px;">
+        はなみずつらいさん
+      </div>
+
+      <div class="chat-message">
+        <ul class="chat">
+          <li class="left clearfix">
+            <span class="chat-img pull-left">
+              <img src="img/user.jpg" alt="User Avatar">
+            </span>
+            <div class="chat-body clearfix">
+              <div class="header">
+                <strong class="primary-font">John Doe</strong>
+                <small class="pull-right text-muted"><i class="fa fa-clock-o"></i> 12 mins ago</small>
+              </div>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              </p>
+            </div>
+          </li>
+          <li class="right clearfix">
+            <span class="chat-img pull-right">
+              <img src="img/user3.jpg" alt="User Avatar">
+            </span>
+            <div class="chat-body clearfix">
+              <div class="header">
+                <strong class="primary-font">Sarah</strong>
+                <small class="pull-right text-muted"><i class="fa fa-clock-o"></i> 13 mins ago</small>
+              </div>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales at.
+              </p>
+            </div>
+          </li>
+          <li class="left clearfix">
+            <span class="chat-img pull-left">
+              <img src="img/user4.jpg" alt="User Avatar">
+            </span>
+            <div class="chat-body clearfix">
+              <div class="header">
+                <strong class="primary-font">Angelina</strong>
+                <small class="pull-right text-muted"><i class="fa fa-clock-o"></i> 20 mins ago</small>
+              </div>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              </p>
+            </div>
+          </li>
+          <li class="right clearfix">
+            <span class="chat-img pull-right">
+              <img src="img/user2.jpg" alt="User Avatar">
+            </span>
+            <div class="chat-body clearfix">
+              <div class="header">
+                <strong class="primary-font">Jane Doe</strong>
+                <small class="pull-right text-muted"><i class="fa fa-clock-o"></i> 25 mins ago</small>
+              </div>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales at.
+              </p>
+            </div>
+          </li>
+          <li class="left clearfix">
+            <span class="chat-img pull-left">
+              <img src="img/user5.jpg" alt="User Avatar">
+            </span>
+            <div class="chat-body clearfix">
+              <div class="header">
+                <strong class="primary-font">Kate</strong>
+                <small class="pull-right text-muted"><i class="fa fa-clock-o"></i> 12 mins ago</small>
+              </div>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              </p>
+            </div>
+          </li>
+          <li class="right clearfix">
+            <span class="chat-img pull-right">
+              <img src="img/user3.jpg" alt="User Avatar">
+            </span>
+            <div class="chat-body clearfix">
+              <div class="header">
+                <strong class="primary-font">Sarah</strong>
+                <small class="pull-right text-muted"><i class="fa fa-clock-o"></i> 13 mins ago</small>
+              </div>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales at.
+              </p>
+            </div>
+          </li>
+          <li class="left clearfix">
+            <span class="chat-img pull-left">
+              <img src="img/user.jpg" alt="User Avatar">
+            </span>
+            <div class="chat-body clearfix">
+              <div class="header">
+                <strong class="primary-font">John Doe</strong>
+                <small class="pull-right text-muted"><i class="fa fa-clock-o"></i> 20 mins ago</small>
+              </div>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              </p>
+            </div>
+          </li>
+          <li class="right clearfix">
+            <span class="chat-img pull-right">
+              <img src="img/user2.jpg" alt="User Avatar">
+            </span>
+            <div class="chat-body clearfix">
+              <div class="header">
+                <strong class="primary-font">Jane Doe</strong>
+                <small class="pull-right text-muted"><i class="fa fa-clock-o"></i> 25 mins ago</small>
+              </div>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales at.
+              </p>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="chat-box bg-white">
+        <div class="input-group">
+          <input class="form-control border no-shadow no-rounded" placeholder="Type your message here">
+          <span class="input-group-btn">
+            <button class="btn btn-success no-rounded" type="button">Send</button>
+          </span>
+        </div><!-- /input-group -->
+      </div>
+    </div>
+
+  </div><!-- /chat-wrapper -->
+
+</script>
 
 
-    <script id="sign_in" type="text/template">
-      //TODO: html
-    </script>
-    <script id="sign_up" type="text/template">
-      //TODO: html
-    </script>
-    <script id="guchis" type="text/template">
-      //TODO: html
-    </script>
-    <script id="guchi" type="text/template">
-      //TODO: html
-    </script>
-    <script id="replies" type="text/template">
-      //TODO: html
-    </script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.24/vue.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue-router/0.7.13/vue-router.js"></script>
 
+<script src="public/router.js"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.24/vue.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-router/0.7.13/vue-router.min.js"></script>
-
-    <script src="public/router.js"></script>
-
-    <link href="public/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="public/css/font-awesome.min.css" rel="stylesheet">
-    <link href="public/css/pace.css" rel="stylesheet">
-    <link href="public/css/endless.min.css" rel="stylesheet">
-    <link href="public/css/endless-skin.css" rel="stylesheet">
-  </head>
-
-  <body id="app">
-    <router-view></router-view>
-  </body>
 </html>

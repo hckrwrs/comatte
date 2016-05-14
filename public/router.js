@@ -5,31 +5,33 @@ var router = new VueRouter()
 router.map({
   '/sign_in': {
     component: Vue.extend({
-      el: '#sign_in'
+      template: '#sign_in'
     })
   },
   '/sign_up': {
     component: Vue.extend({
-      el: '#sign_up'
+      template: '#sign_up'
     })
   },
   '/guchis': {
     component: Vue.extend({
-      el: '#guchis'
+      template: '#guchis'
     }),
-    auth: true
+    // auth: true
   },
-  '/guchis/:guchi_id': {
+  // '/guchis/:guchi_id': {
+  '/guchi': {
     component: Vue.extend({
-      el: '#guchi'
+      template: '#guchi'
     }),
-    auth: true
+    // auth: true
   },
-  '/guchis/:guchi_id/replies': {
+  // '/guchis/:guchi_id/replies': {
+  '/replies': {
     component: Vue.extend({
-      el: '#replies'
+      template: '#replies'
     }),
-    auth: true
+    // auth: true
   },
 });
 
