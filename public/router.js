@@ -23,7 +23,7 @@ router.map({
         router.go('/guchis');
       }
     })
-  }
+  },
   '/sign_in': {
     component: Vue.extend({
       template: '#sign_in',
