@@ -36,7 +36,7 @@ router.map({
       data: function () {
         return {
           name: ''
-        }
+        };
       },
       methods: {
         sign_in: function () {
@@ -116,9 +116,9 @@ router.map({
           var self = this;
           $.ajax({
             url: create_url('/guchis/create'),
-            data: {
+            data: JSON.stringify({
               content: self.guchi_text,
-            },
+            }),
           }).done(function (data, status, xhr) {
             router.go('/guchis');
           });
