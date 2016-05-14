@@ -116,7 +116,21 @@ router.map({
   '/guchis/:guchi_id': {
     name: 'guchi',
     component: Vue.extend({
-      template: '#guchi'
+      template: '#guchi',
+      data: function () {
+        return {
+          guchi: {}
+        };
+      },
+      created: function () {
+        var guchi_id = this.$route.params.guchi_id;
+        $.ajax({
+          url: create_url('/guchis/' + guchi_id)
+        }).done(function (data) {
+          console.log(data);
+          self.guchi = data.data;
+        });
+      }
     }),
     auth: true
   },
