@@ -65,10 +65,11 @@ router.map({
       },
       methods: {
         fetch_guchis: function () {
+          var self = this;
           $.ajax({
             url: create_url('/guchis')
           }).done(function (data) {
-            this.guchis = data;
+            self.guchis = data;
             // this.$set('guchis', data);
           }).fail(function () {
             // XXX: セッション切れてる？
