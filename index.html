@@ -37,21 +37,21 @@
           <form class="form-login text-center">
             <div class="form-group">
               <label>あなたのニックネーム</label>
-              <input type="text" class="form-control input-sm bounceIn animation-delay2">
+              <input type="text" class="form-control input-sm bounceIn animation-delay2" v-model="name">
             </div>
-            <a class="btn btn-success btn-sm bounceIn animation-delay5 login-link pull-right" href="index.html"><i class="fa fa-sign-in"></i> Sign in</a>
+            <a class="btn btn-success btn-sm bounceIn animation-delay5 login-link pull-right" v-on:click="sign_in()"><i class="fa fa-sign-in"></i> Sign in</a>
           </form>
         </div>
       </div><!-- /panel -->
     </div><!-- /login-widget -->
   </div><!-- /login-wrapper -->
-
 </script>
+
 <script id="sign_up" type="text/template">
   //TODO: html
 </script>
 <script id="guchis" type="text/template">
-  
+
 
   <div class="padding-md">
     <div class="panel">
@@ -229,11 +229,18 @@
 
 
 <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+<script>
+  $.ajaxSetup({
+    method: 'POST',
+    contentType: 'application/json',
+    dataType: 'json'
+  });
+</script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.24/vue.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-router/0.7.13/vue-router.js"></script>
 
 <script src="public/router.js"></script>
-<script src="public/api_caller.js"></script>
+
 
 </html>
