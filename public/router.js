@@ -5,7 +5,26 @@ var router = new VueRouter()
 router.map({
   '/sign_in': {
     component: Vue.extend({
-      template: '#sign_in'
+      template: '#sign_in',
+      data: {
+        name: ''
+      },
+      methods: {
+        sign_in: function () {
+          var name = this.name;
+          $.ajax({
+            url: '/api/guchi/sessions/sign_in',
+            data: JSON.stringify({name: name}),
+          }).done(function (data) {
+            console.log(data);
+            // TODO: userオブジェクトをセッションストアに格納
+            router.redirect('/guchis');
+          }).fail(function () {
+            // ほとんどの場合ユーザーが存在しない
+            router.go('/sign_up');
+          });
+        },
+      }
     })
   },
   '/sign_up': {
