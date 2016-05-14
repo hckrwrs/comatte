@@ -94,8 +94,9 @@ router.map({
       data: function () {
         return {
           user: getUser(),
-          guchis: []
-        }
+          guchis: [],
+          guchi_text: "", // 愚痴る為のテキスト
+        };
       },
       created: function () {
         this.fetch_guchis();
@@ -110,8 +111,19 @@ router.map({
           }).fail(function () {
             // XXX: セッション切れてる？
           });
-        }
-      }
+        },
+        guchiru: function () {
+          var self = this;
+          $.ajax({
+            url: create_url('/guchis/create'),
+            data: {
+              content: self.guchi_text,
+            },
+          }).done(function (data, status, xhr) {
+            router.go('/guchis');
+          });
+        },
+      },
     }),
     auth: true
   },
