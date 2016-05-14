@@ -91,12 +91,25 @@
           </div><!-- /.col -->
         <button type="submit" class="btn btn-success btn-sm">Submit</button>
       </form>
+      <a class="btn btn-success btn-sm bounceIn animation-delay5 login-link pull-right" v-on:click="sign_up()"><i class="fa fa-sign-in"></i> Sign up</a>
     </div>
   </div>
 </script>
 
 <script id="guchis" type="text/template">
   <g-header title="Home"></g-header>
+
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <form class="form-inline no-margin">
+        <div class="form-group">
+          <img :src=user.icon.value></img>
+          <input type="text" class="form-control input-sm" placeholder="なにがあったの？">
+        </div>
+        <button type="submit" class="btn btn-sm btn-success">グチる</button>
+      </form>
+    </div>
+
   <div class="panel" v-for="guchi in guchis">
     <a v-link="{ name: 'guchi', params: {guchi_id: guchi.id} }">
       <div class="panel-body">
@@ -113,7 +126,6 @@
 </script>
 
 <script id="guchi" type="text/template">
-  kokomessage>>>>>>
   <g-header title="Comments" path="/guchis"></g-header>
   <div class="panel" v-for="reply in guchi.replies">
     <a href="#!/replies">
