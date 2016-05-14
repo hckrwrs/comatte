@@ -45,14 +45,12 @@ router.map({
   '/sign_up': {
     component: Vue.extend({
       template: '#sign_up',
-<<<<<<< HEAD
+      
       data: function() {return {
         icons: [],
         sexes: [],
       };},
-=======
-      data: function () {},
->>>>>>> 7656a40113192a8eb5d651e5694e62738cb0ad96
+
       methods: {
         sign_up: function () {
           $.ajax({
