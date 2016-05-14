@@ -127,6 +127,7 @@ router.map({
         $.ajax({
           url: create_url('/guchis/' + guchi_id)
         }).done(function (data) {
+          // TODO: なぜか表示されない
           console.log(data);
           self.guchi = data.data;
         });
