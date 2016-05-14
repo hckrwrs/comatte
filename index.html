@@ -11,7 +11,7 @@
 </head>
 
 <body>
-  <div id="wrapper" class="preload">
+  <div id="wrapper" class="preload" style="padding: 40px 0 0;">
     <div id="app">
       <div class="padding-md">
         <router-view>
@@ -22,10 +22,11 @@
 </body>
 
 <script id="g-header" type="text/template">
-  <div class="main-header clearfix">
+  <div class="main-header clearfix" style="width:100%; position: fixed;top:0; left:0; background-color:#CCCCFF;z-index:2000;">
     <a v-if="path" v-link="{ path: path }" class="pull-left btn btn-link"><i class="fa fa-arrow-left"></i></a>
     <h3 class="no-margin" style="text-align:center;">{{ title }}</h3>
   </div>
+  <p style="margin-bottom:2em;" ></p>
 </script>
 
 <script id="sign_in" type="text/template">
@@ -112,6 +113,7 @@
 </script>
 
 <script id="guchi" type="text/template">
+  kokomessage>>>>>>
   <g-header title="Comments" path="/guchis"></g-header>
   <div class="panel" v-for="reply in guchi.replies">
     <a href="#!/replies">
@@ -128,6 +130,7 @@
     </a>
   </div>
 </script>
+
 <script id="replies" type="text/template">
   <div class="chat chat-inner">
     <g-header title="Hhread" path="/guchi"></g-header>
