@@ -45,12 +45,10 @@ router.map({
   '/sign_up': {
     component: Vue.extend({
       template: '#sign_up',
-      
       data: function() {return {
         icons: [],
         sexes: [],
       };},
-
       methods: {
         sign_up: function () {
           $.ajax({
@@ -97,7 +95,6 @@ router.map({
             url: create_url('/guchis')
           }).done(function (data) {
             self.guchis = data;
-            // this.$set('guchis', data);
           }).fail(function () {
             // XXX: セッション切れてる？
           });
