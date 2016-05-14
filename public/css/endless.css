@@ -26,7 +26,7 @@
   width: 194px;
   color: #999999;
   background: #323447;
-  float: left;
+  /*float: left;*/
   transition: all 0.5s ease;
   -webkit-transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
