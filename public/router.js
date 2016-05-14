@@ -17,6 +17,13 @@ var MasterData = $.ajax({
 });
 
 router.map({
+  '/': {
+    component: Vue.extend({
+      created: function () {
+        router.go('/guchis');
+      }
+    })
+  }
   '/sign_in': {
     component: Vue.extend({
       template: '#sign_in',
@@ -61,9 +68,6 @@ router.map({
           }).done(function (data) {
             setUser(data);
             router.go('/guchis');
-          }).fail(function () {
-            // ほとんどの場合ユーザーが存在しないのでサインアップへ
-            router.go('/sign_up');
           });
         }
       },
@@ -100,25 +104,26 @@ router.map({
         }
       }
     }),
-    // auth: true
+    auth: true
   },
   '/guchis/:guchi_id': {
     name: 'guchi',
     component: Vue.extend({
       template: '#guchi'
     }),
-    // auth: true
+    auth: true
   },
-  // '/guchis/:guchi_id/replies': {
-  '/replies': {
+  '/guchis/:guchi_id/replies': {
+    name: 'replies',
     component: Vue.extend({
       template: '#replies'
     }),
-    // auth: true
+    auth: true
   },
 });
 
 router.beforeEach(function (transition) {
+  var authenticated = getUser();
   if (transition.to.auth && !authenticated) {
     transition.redirect('/sign_in');
   }
