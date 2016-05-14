@@ -76,54 +76,19 @@
   </div>
 </script>
 <script id="guchis" type="text/template">
-  <div class="panel">
-    <a href="#!/guchi">
+  <div class="panel" v-for="guchi in guchis">
+    <a href="#">
       <div class="panel-body">
         <div class="clearfix">
           <span class="label label-danger pull-right">new!!</span>
         </div>
         <div class="seperator"></div>
-        <p>
-          つらいわ。。。はぁ。。。
-        </p>
-        <div class="text-muted">Oct 08,2013</div>
+        <p>{{guchi.content}}</p>
+        <div class="text-muted">{{guchi.created_at}}</div>
         <div class="badge badge-info" style="float: right">3</div>
       </div>
     </a>
   </div>
-
-  <div class="panel">
-    <a href="#!/guchi">
-      <div class="panel-body">
-        <div class="clearfix" hidden>
-          <span class="label label-danger pull-right">new!!</span>
-        </div>
-        <div class="seperator"></div>
-        <p>
-          もう嫌になってきた...
-        </p>
-        <div class="text-muted">Oct 08,2013</div>
-        <div class="badge badge-info" style="float: right"></div>
-      </div>
-    </a>
-  </div>
-
-  <div class="panel">
-    <a href="#!/guchi">
-      <div class="panel-body">
-        <div class="clearfix">
-          <span class="label label-danger pull-right">new!!</span>
-        </div>
-        <div class="seperator"></div>
-        <p>
-          つらいわ。。。はぁ。。。
-        </p>
-        <div class="text-muted">Oct 08,2013</div>
-        <div class="badge badge-info" style="float: right" vals>90</div>
-      </div>
-      </a>
-  </div>
-
 </script>
 
 
@@ -132,7 +97,7 @@
     <a href="#!/replies">
       <div class="panel-body">
         <div class="clearfix">
-          <img src="img/user.jpg" class="img-circle" style="width:100px;" alt="User Avatar"> 
+          <img src="img/user.jpg" class="img-circle" style="width:100px;" alt="User Avatar">
           <span class="badge badge-info pull-right">3</span>
           <strong class="block">出会いたいさん</strong>
           <small class="text-muted">Oct 08,2013</small>
@@ -149,7 +114,7 @@
     <a href="#!/replies">
       <div class="panel-body">
         <div class="clearfix">
-          <img src="img/user.jpg" class="img-circle" style="width:100px;" alt="User Avatar"> 
+          <img src="img/user.jpg" class="img-circle" style="width:100px;" alt="User Avatar">
           <span class="badge badge-info pull-right">1</span>
           <strong class="block">超出会いたいさん</strong>
           <small class="text-muted">Oct 08,2013</small>
@@ -301,7 +266,10 @@
   $.ajaxSetup({
     method: 'POST',
     contentType: 'application/json',
-    dataType: 'json'
+    dataType: 'json',
+    xhrFields: {
+      withCredentials: true
+    }
   });
 </script>
 
