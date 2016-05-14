@@ -2,12 +2,28 @@ var App = Vue.extend({});
 
 var router = new VueRouter();
 
+
+var URL_BASE = 'http://127.0.0.1:3000';
+function create_url(endpoint) {
+  // TODO: ここを書き換えてURL作る
+  // return '/api/guchi' + endpoint
+  return URL_BASE + '/guchi/' + endpoint;
+}
+
+var MasterData = $.ajax({
+  // /master_data は /guchi 下でないので、 create_url が使えない
+  url: URL_BASE + '/master_data',
+  method: 'POST',
+});
+
 router.map({
   '/sign_in': {
     component: Vue.extend({
       template: '#sign_in',
-      data: {
-        name: ''
+      data: function () {
+        return {
+          name: ''
+        }
       },
       methods: {
         sign_in: function () {
@@ -16,8 +32,7 @@ router.map({
             url: create_url('/sessions/sign_in'),
             data: JSON.stringify({name: name}),
           }).done(function (data) {
-            console.log(data);
-            // TODO: userオブジェクトをセッションストアに格納
+            setUser(data);
             router.go('/guchis');
           }).fail(function () {
             // ほとんどの場合ユーザーが存在しないのでサインアップへ
@@ -30,9 +45,12 @@ router.map({
   '/sign_up': {
     component: Vue.extend({
       template: '#sign_up',
-      data: {
+      
+      data: function() {return {
+        icons: [],
+        sexes: [],
+      };},
 
-      },
       methods: {
         sign_up: function () {
           $.ajax({
@@ -43,41 +61,49 @@ router.map({
               sex_id: this.sex_id
             }),
           }).done(function (data) {
-            console.log(data);
-            // TODO: userオブジェクトをセッションストアに格納
+            setUser(data);
             router.go('/guchis');
           }).fail(function () {
             // ほとんどの場合ユーザーが存在しないのでサインアップへ
             router.go('/sign_up');
           });
         }
+      },
+      created: function(){
+        var self = this;
+        MasterData.done(function(data){
+          console.log(data)
+          self.icons = data.data.icons;
+          self.sexes = data.data.sexes;
+        });
       }
     })
   },
   '/guchis': {
     component: Vue.extend({
-      template: '#guchis'
-    }),
-    data: {},
-    methods: {
-      fetch_guchis: function () {
-        $.ajax({
-          url: create_url('/guchis'),
-          data: JSON.stringify({
-            name: this.name,
-            icon_id: this.icon_id,
-            sex_id: this.sex_id
-          }),
-        }).done(function (data) {
-          console.log(data);
-          // TODO: userオブジェクトをセッションストアに格納
-          router.go('/guchis');
-        }).fail(function () {
-          // ほとんどの場合ユーザーが存在しないのでサインアップへ
-          router.go('/sign_up');
-        });
+      template: '#guchis',
+      data: function () {
+        return {
+          guchis: [{content: 'hogehoge'}]
+        }
+      },
+      created: function () {
+        this.fetch_guchis();
+      },
+      methods: {
+        fetch_guchis: function () {
+          var self = this;
+          $.ajax({
+            url: create_url('/guchis')
+          }).done(function (data) {
+            self.guchis = data;
+            // this.$set('guchis', data);
+          }).fail(function () {
+            // XXX: セッション切れてる？
+          });
+        }
       }
-    }
+    }),
     // auth: true
   },
   // '/guchis/:guchi_id': {
@@ -109,18 +135,6 @@ router.start(App, '#app');
 
 
 
-var URL_BASE = 'http://127.0.0.1:3000';
-function create_url(endpoint) {
-  // TODO: ここを書き換えてURL作る
-  // return '/api/guchi' + endpoint
-  return URL_BASE + '/guchi/' + endpoint;
-}
-
-var MasterData = $.ajax({
-  // /master_data は /guchi 下でないので、 create_url が使えない
-  url: URL_BASE + '/master_data',
-  method: 'POST',
-});
 
 // Save user object into localstorage
 function getUser() {
