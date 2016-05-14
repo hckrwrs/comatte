@@ -21,6 +21,13 @@
   </div>
 </body>
 
+<script id="g-header" type="text/template">
+  <div class="main-header clearfix">
+    <a v-link="{ path: path }" class="pull-left btn btn-link"><i class="fa fa-arrow-left"></i></a>
+    <h3 class="no-margin" style="text-align:center;">{{ title }}</h3>
+  </div>
+</script>
+
 <script id="sign_in" type="text/template">
   <div class="login-wrapper">
     <div class="text-center">
@@ -87,12 +94,7 @@
   </div>
 </script>
 <script id="guchis" type="text/template">
-  <div class="main-header clearfix">
-    <div class="page-title">
-      <h3 class="no-margin">Home</h3>
-      <span>your tweets</span>
-    </div>
-  </div>
+  <g-header title="Home"></g-header>
   <div class="panel" v-for="guchi in guchis">
     <a v-link="{ name: 'guchi', params: {guchi_id: guchi.id} }">
       <div class="panel-body">
@@ -106,16 +108,41 @@
       </div>
     </a>
   </div>
+  <div class="panel">
+    <a href="#!/guchi">
+      <div class="panel-body">
+        <div class="clearfix" hidden>
+          <span class="label label-danger pull-right">new!!</span>
+        </div>
+        <div class="seperator"></div>
+        <p>
+          もう嫌になってきた...
+        </p>
+        <div class="text-muted">Oct 08,2013</div>
+        <div class="badge badge-info" style="float: right"></div>
+      </div>
+    </a>
+  </div>
+
+  <div class="panel">
+    <a href="#!/guchi">
+      <div class="panel-body">
+        <div class="clearfix">
+          <span class="label label-danger pull-right">new!!</span>
+        </div>
+        <div class="seperator"></div>
+        <p>
+          つらいわ。。。はぁ。。。
+        </p>
+        <div class="text-muted">Oct 08,2013</div>
+        <div class="badge badge-info" style="float: right" vals>90</div>
+      </div>
+      </a>
+  </div>
 </script>
 
-
 <script id="guchi" type="text/template">
-  <div class="main-header clearfix">
-    <div class="page-title">
-      <h3 class="no-margin">Hhread</h3>
-      <span>Hhread</span>
-    </div>
-  </div>
+  <g-header title="Comments" path="/guchis"></g-header>
   <div class="panel">
     <a href="#!/replies">
       <div class="panel-body">
@@ -152,12 +179,7 @@
 </script>
 <script id="replies" type="text/template">
   <div class="chat chat-inner">
-    <div class="main-header clearfix">
-      <div class="page-title">
-        <h3 class="no-margin">chat room</h3>
-        <span>caht room</span>
-      </div>
-    </div>
+    <g-header title="Hhread" path="/guchi"></g-header>
     <div class="chat-header bg-white border-bottom padding-sm" style="height: 40px;">
       はなみずつらいさん
     </div>

@@ -16,6 +16,11 @@ var MasterData = $.ajax({
   method: 'POST',
 });
 
+Vue.component("g-header", {
+  template: "#g-header",
+  props: ['title', 'path'],
+});
+
 router.map({
   '/': {
     component: Vue.extend({
