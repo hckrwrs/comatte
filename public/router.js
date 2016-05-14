@@ -3,7 +3,7 @@ var App = Vue.extend({});
 var router = new VueRouter();
 
 
-var URL_BASE = 'http://127.0.0.1:3000';
+var URL_BASE = 'http://seishun-api.pocke.me';
 // var URL_BASE = 'http://192.168.100.246:3000';
 function create_url(endpoint) {
   // TODO: ここを書き換えてURL作る
@@ -94,8 +94,9 @@ router.map({
       data: function () {
         return {
           user: getUser(),
-          guchis: []
-        }
+          guchis: [],
+          guchi_text: "", // 愚痴る為のテキスト
+        };
       },
       created: function () {
         this.fetch_guchis();
@@ -110,8 +111,19 @@ router.map({
           }).fail(function () {
             // XXX: セッション切れてる？
           });
-        }
-      }
+        },
+        guchiru: function () {
+          var self = this;
+          $.ajax({
+            url: create_url('/guchis/create'),
+            data: {
+              content: self.guchi_text,
+            },
+          }).done(function (data, status, xhr) {
+            router.go('/guchis');
+          });
+        },
+      },
     }),
     auth: true
   },
