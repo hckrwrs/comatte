@@ -2,6 +2,20 @@ var App = Vue.extend({});
 
 var router = new VueRouter();
 
+
+var URL_BASE = 'http://127.0.0.1:3000';
+function create_url(endpoint) {
+  // TODO: ここを書き換えてURL作る
+  // return '/api/guchi' + endpoint
+  return URL_BASE + '/guchi/' + endpoint;
+}
+
+var MasterData = $.ajax({
+  // /master_data は /guchi 下でないので、 create_url が使えない
+  url: URL_BASE + '/master_data',
+  method: 'POST',
+});
+
 router.map({
   '/sign_in': {
     component: Vue.extend({
@@ -30,9 +44,10 @@ router.map({
   '/sign_up': {
     component: Vue.extend({
       template: '#sign_up',
-      data: {
-
-      },
+      data: function() {return {
+        icons: [],
+        sexes: [],
+      };},
       methods: {
         sign_up: function () {
           $.ajax({
@@ -51,6 +66,14 @@ router.map({
             router.go('/sign_up');
           });
         }
+      },
+      created: function(){
+        var self = this;
+        MasterData.done(function(data){
+          console.log(data)
+          self.icons = data.data.icons;
+          self.sexes = data.data.sexes;
+        });
       }
     })
   },
@@ -109,18 +132,6 @@ router.start(App, '#app');
 
 
 
-var URL_BASE = 'http://127.0.0.1:3000';
-function create_url(endpoint) {
-  // TODO: ここを書き換えてURL作る
-  // return '/api/guchi' + endpoint
-  return URL_BASE + '/guchi/' + endpoint;
-}
-
-var MasterData = $.ajax({
-  // /master_data は /guchi 下でないので、 create_url が使えない
-  url: URL_BASE + '/master_data',
-  method: 'POST',
-});
 
 // Save user object into localstorage
 function getUser() {
