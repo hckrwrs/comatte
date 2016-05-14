@@ -17,6 +17,13 @@ var MasterData = $.ajax({
 });
 
 router.map({
+  '/': {
+    component: Vue.extend({
+      created: function () {
+        router.go('/guchis');
+      }
+    })
+  }
   '/sign_in': {
     component: Vue.extend({
       template: '#sign_in',
@@ -45,12 +52,10 @@ router.map({
   '/sign_up': {
     component: Vue.extend({
       template: '#sign_up',
-      
       data: function() {return {
         icons: [],
         sexes: [],
       };},
-
       methods: {
         sign_up: function () {
           $.ajax({
@@ -63,16 +68,12 @@ router.map({
           }).done(function (data) {
             setUser(data);
             router.go('/guchis');
-          }).fail(function () {
-            // ほとんどの場合ユーザーが存在しないのでサインアップへ
-            router.go('/sign_up');
           });
         }
       },
-      created: function(){
+      created: function () {
         var self = this;
-        MasterData.done(function(data){
-          console.log(data)
+        MasterData.done(function (data) {
           self.icons = data.data.icons;
           self.sexes = data.data.sexes;
         });
@@ -84,7 +85,7 @@ router.map({
       template: '#guchis',
       data: function () {
         return {
-          guchis: [{content: 'hogehoge'}]
+          guchis: []
         }
       },
       created: function () {
@@ -97,32 +98,32 @@ router.map({
             url: create_url('/guchis')
           }).done(function (data) {
             self.guchis = data;
-            // this.$set('guchis', data);
           }).fail(function () {
             // XXX: セッション切れてる？
           });
         }
       }
     }),
-    // auth: true
+    auth: true
   },
-  // '/guchis/:guchi_id': {
-  '/guchi': {
+  '/guchis/:guchi_id': {
+    name: 'guchi',
     component: Vue.extend({
       template: '#guchi'
     }),
-    // auth: true
+    auth: true
   },
-  // '/guchis/:guchi_id/replies': {
-  '/replies': {
+  '/guchis/:guchi_id/replies': {
+    name: 'replies',
     component: Vue.extend({
       template: '#replies'
     }),
-    // auth: true
+    auth: true
   },
 });
 
 router.beforeEach(function (transition) {
+  var authenticated = getUser();
   if (transition.to.auth && !authenticated) {
     transition.redirect('/sign_in');
   }
