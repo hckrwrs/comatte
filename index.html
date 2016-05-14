@@ -77,13 +77,13 @@
 </script>
 <script id="guchis" type="text/template">
   <div class="main-header clearfix">
-    <div class="class="page-title"">
+    <div class="page-title">
       <h3 class="no-margin">Home</h3>
       <span>your tweets</span>
     </div>
   </div>
-  <div class="panel">
-    <a href="#!/guchi">2
+  <div class="panel" v-for="guchi in guchis">
+    <a v-link="{ name: 'guchi', params: {guchi_id: guchi.id} }">
       <div class="panel-body">
         <div class="clearfix">
           <span class="label label-danger pull-right">new!!</span>
@@ -95,43 +95,12 @@
       </div>
     </a>
   </div>
-  <div class="panel">
-    <a href="#!/guchi">
-      <div class="panel-body">
-        <div class="clearfix" hidden>
-          <span class="label label-danger pull-right">new!!</span>
-        </div>
-        <div class="seperator"></div>
-        <p>
-          もう嫌になってきた...
-        </p>
-        <div class="text-muted">Oct 08,2013</div>
-        <div class="badge badge-info" style="float: right"></div>
-      </div>
-    </a>
-  </div>
-
-  <div class="panel">
-    <a href="#!/guchi">
-      <div class="panel-body">
-        <div class="clearfix">
-          <span class="label label-danger pull-right">new!!</span>
-        </div>
-        <div class="seperator"></div>
-        <p>
-          つらいわ。。。はぁ。。。
-        </p>
-        <div class="text-muted">Oct 08,2013</div>
-        <div class="badge badge-info" style="float: right" vals>90</div>
-      </div>
-      </a>
-  </div>
 </script>
 
 
 <script id="guchi" type="text/template">
   <div class="main-header clearfix">
-    <div class="class="page-title"">
+    <div class="page-title">
       <h3 class="no-margin">Hhread</h3>
       <span>Hhread</span>
     </div>
@@ -173,7 +142,7 @@
 <script id="replies" type="text/template">
   <div class="chat chat-inner">
     <div class="main-header clearfix">
-      <div class="class="page-title"">
+      <div class="page-title">
         <h3 class="no-margin">chat room</h3>
         <span>caht room</span>
       </div>

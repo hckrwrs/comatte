@@ -67,10 +67,9 @@ router.map({
           });
         }
       },
-      created: function(){
+      created: function () {
         var self = this;
-        MasterData.done(function(data){
-          console.log(data)
+        MasterData.done(function (data) {
           self.icons = data.data.icons;
           self.sexes = data.data.sexes;
         });
@@ -82,7 +81,7 @@ router.map({
       template: '#guchis',
       data: function () {
         return {
-          guchis: [{content: 'hogehoge'}]
+          guchis: []
         }
       },
       created: function () {
@@ -103,8 +102,8 @@ router.map({
     }),
     // auth: true
   },
-  // '/guchis/:guchi_id': {
-  '/guchi': {
+  '/guchis/:guchi_id': {
+    name: 'guchi',
     component: Vue.extend({
       template: '#guchi'
     }),
