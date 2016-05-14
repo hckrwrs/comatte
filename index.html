@@ -103,12 +103,13 @@
     <div class="panel-body">
       <form class="form-inline no-margin">
         <div class="form-group">
-          <img :src=user.icon.value></img>
-          <input type="text" class="form-control input-sm" placeholder="なにがあったの？">
+          <img :src=user.icon.value style="width:32px; height:32px;"></img>
+          <input type="text" class="form-control input-sm" placeholder="なにがあったの？" style="height:36px;">
         </div>
         <button type="submit" class="btn btn-sm btn-success">グチる</button>
       </form>
     </div>
+  </div>
 
   <div class="panel" v-for="guchi in guchis">
     <a v-link="{ name: 'guchi', params: {guchi_id: guchi.id} }">
