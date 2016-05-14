@@ -1,6 +1,6 @@
-var App = Vue.extend({})
+var App = Vue.extend({});
 
-var router = new VueRouter()
+var router = new VueRouter();
 
 router.map({
   '/sign_in': {
@@ -112,5 +112,18 @@ router.start(App, '#app');
 function create_url(endpoint) {
   // TODO: ここを書き換えてURL作る
   // return '/api/guchi' + endpoint
-  return 'http://127.0.0.1:3000/guchi/' + endpoint
+  return 'http://127.0.0.1:3000/guchi/' + endpoint;
+}
+
+// Save user object into localstorage
+function getUser() {
+  var user = localStorage.getItem('user');
+  if (!user) {
+    return null;
+  }
+  return JSON.parse(user);
+}
+
+function setUser(user) {
+  localStorage.setItem('user', JSON.stringify(user));
 }
