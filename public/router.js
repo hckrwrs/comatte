@@ -120,7 +120,7 @@ router.map({
               content: self.guchi_text,
             }),
           }).done(function (data, status, xhr) {
-            router.go('/guchis');
+            self.guchis.unshift(data);
           });
         },
       },
