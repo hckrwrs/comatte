@@ -13,14 +13,14 @@ router.map({
         sign_in: function () {
           var name = this.name;
           $.ajax({
-            url: '/api/guchi/sessions/sign_in',
+            url: create_url('/sessions/sign_in'),
             data: JSON.stringify({name: name}),
           }).done(function (data) {
             console.log(data);
             // TODO: userオブジェクトをセッションストアに格納
-            router.redirect('/guchis');
+            router.go('/guchis');
           }).fail(function () {
-            // ほとんどの場合ユーザーが存在しない
+            // ほとんどの場合ユーザーが存在しないのでサインアップへ
             router.go('/sign_up');
           });
         },
@@ -29,13 +29,55 @@ router.map({
   },
   '/sign_up': {
     component: Vue.extend({
-      template: '#sign_up'
+      template: '#sign_up',
+      data: {
+
+      },
+      methods: {
+        sign_up: function () {
+          $.ajax({
+            url: create_url('/sessions/sign_up'),
+            data: JSON.stringify({
+              name: this.name,
+              icon_id: this.icon_id,
+              sex_id: this.sex_id
+            }),
+          }).done(function (data) {
+            console.log(data);
+            // TODO: userオブジェクトをセッションストアに格納
+            router.go('/guchis');
+          }).fail(function () {
+            // ほとんどの場合ユーザーが存在しないのでサインアップへ
+            router.go('/sign_up');
+          });
+        }
+      }
     })
   },
   '/guchis': {
     component: Vue.extend({
       template: '#guchis'
     }),
+    data: {},
+    methods: {
+      fetch_guchis: function () {
+        $.ajax({
+          url: create_url('/guchis'),
+          data: JSON.stringify({
+            name: this.name,
+            icon_id: this.icon_id,
+            sex_id: this.sex_id
+          }),
+        }).done(function (data) {
+          console.log(data);
+          // TODO: userオブジェクトをセッションストアに格納
+          router.go('/guchis');
+        }).fail(function () {
+          // ほとんどの場合ユーザーが存在しないのでサインアップへ
+          router.go('/sign_up');
+        });
+      }
+    }
     // auth: true
   },
   // '/guchis/:guchi_id': {
@@ -64,3 +106,11 @@ router.beforeEach(function (transition) {
 });
 
 router.start(App, '#app');
+
+
+
+function create_url(endpoint) {
+  // TODO: ここを書き換えてURL作る
+  // return '/api/guchi' + endpoint
+  return 'http://127.0.0.1:3000/guchi/' + endpoint
+}
