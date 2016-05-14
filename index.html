@@ -1,12 +1,40 @@
+<!DOCTYPE html>
 <html>
   <head>
     <title>Comatte</title>
+
+
+    <script id="sign_in" type="text/template">
+      //TODO: html
+    </script>
+    <script id="sign_up" type="text/template">
+      //TODO: html
+    </script>
+    <script id="guchis" type="text/template">
+      //TODO: html
+    </script>
+    <script id="guchi" type="text/template">
+      //TODO: html
+    </script>
+    <script id="replies" type="text/template">
+      //TODO: html
+    </script>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.24/vue.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-router/0.7.13/vue-router.min.js"></script>
+
+    <script src="public/router.js"></script>
+
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/pace.css" rel="stylesheet">
+    <link href="css/endless.min.css" rel="stylesheet">
+    <link href="css/endless-skin.css" rel="stylesheet">
   </head>
 
   <body>
-    <form>
-      <input type="text" name="name">
-      <button>Login</button>
-    </form>
+    <router-view></router-view>
   </body>
 </html>
