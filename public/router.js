@@ -109,11 +109,24 @@ router.start(App, '#app');
 
 
 
+var URL_BASE = 'http://127.0.0.1:3000';
 function create_url(endpoint) {
   // TODO: ここを書き換えてURL作る
   // return '/api/guchi' + endpoint
-  return 'http://127.0.0.1:3000/guchi/' + endpoint;
+  return URL_BASE + '/guchi/' + endpoint;
 }
+
+// ページajaxリクエストが帰ってくるまで空だよー
+var Icons = [];
+var Sexes = [];
+$.ajax({
+  // /master_data は /guchi 下でないので、 create_url が使えない
+  url: URL_BASE + '/master_data',
+  method: 'POST',
+}).done(function (data, status, xhr) {
+  Icons = data.data.icons;
+  Sexes = data.data.sexes;
+});
 
 // Save user object into localstorage
 function getUser() {
