@@ -44,7 +44,7 @@ router.map({
             url: create_url('/sessions/sign_in'),
             data: JSON.stringify({name: name}),
           }).done(function (data) {
-            setUser(data.data);
+            setUser(data);
             router.go('/guchis');
           }).fail(function () {
             // ほとんどの場合ユーザーが存在しないのでサインアップへ
@@ -73,7 +73,7 @@ router.map({
               sex_id: this.sex_id
             }),
           }).done(function (data) {
-            setUser(data.data);
+            setUser(data);
             router.go('/guchis');
           });
         }
@@ -165,7 +165,11 @@ function getUser() {
   if (!user) {
     return null;
   }
-  return JSON.parse(user);
+  try {
+    return JSON.parse(user);
+  } catch (e) {
+    return null;
+  }
 }
 
 function setUser(user) {
