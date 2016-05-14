@@ -116,16 +116,10 @@ function create_url(endpoint) {
   return URL_BASE + '/guchi/' + endpoint;
 }
 
-// ページajaxリクエストが帰ってくるまで空だよー
-var Icons = [];
-var Sexes = [];
-$.ajax({
+var MasterData = $.ajax({
   // /master_data は /guchi 下でないので、 create_url が使えない
   url: URL_BASE + '/master_data',
   method: 'POST',
-}).done(function (data, status, xhr) {
-  Icons = data.data.icons;
-  Sexes = data.data.sexes;
 });
 
 // Save user object into localstorage
