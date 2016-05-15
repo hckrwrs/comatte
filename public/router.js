@@ -189,6 +189,7 @@ router.map({
           self.deai_user = data.data;
         });
         set_polling(this.fetch_replies);
+
         this.fetch_replies();
       },
       methods: {
