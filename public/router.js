@@ -99,6 +99,7 @@ router.map({
         };
       },
       created: function () {
+        set_polling(this.fetch_guchis);
         this.fetch_guchis();
       },
       methods: {
@@ -139,6 +140,7 @@ router.map({
         };
       },
       created: function () {
+        set_polling(this.fetch_guchi);
         this.fetch_guchi();
       },
       methods: {
@@ -172,6 +174,7 @@ router.map({
         }
       },
       created: function () {
+        set_polling(this.fetch_replies);
         this.fetch_replies();
       },
       methods: {
@@ -226,6 +229,19 @@ router.beforeEach(function (transition) {
 router.start(App, '#app');
 
 
+
+// interval_id をstop/start
+var current_interval_event = null;
+function set_polling(to_be_intervaled) {
+  if (current_interval_event) {
+    clearInterval(current_interval_event);
+  }
+  if (to_be_intervaled) {
+    current_interval_event = setInterval(function () {
+      to_be_intervaled();
+    }, 2000);
+  }
+}
 
 
 // Save user object into localstorage
