@@ -11,7 +11,7 @@
 </head>
 
 <body>
-  <div id="wrapper" class="preload" style="padding: 40px 0 0;">
+  <div id="wrapper" class="preload" style="padding: 40px 0 ;">
     <div id="app">
       <div class="padding-md">
         <router-view>
@@ -146,10 +146,11 @@
   <div class="chat chat-inner">
     <g-header title="Hhread" path="/guchi"></g-header>
 
-    <div class="chat-message">
-      <ul class="chat">
-        <li class="{{reply.is_guching ? 'right' : 'left'}} clearfix" v-for="reply in replies">
-          <div class="chat-body clearfix">
+    <!--<div class="chat-message">-->
+    <div>
+      <ul class="chat" style="padding: 30;">
+        <li class="{{reply.is_guching ? 'right' : 'left'}} clearfix" v-for="reply in replies" style="padding-left: 0;">
+          <div class="chat-body clearfix" style="margin: 0;">
             <div class="header">
               <small class="pull-{{reply.is_guching ? 'right' : 'left'}} text-muted"><i class="fa fa-clock-o"></i> 12 mins ago</small>
             </div>
@@ -158,10 +159,11 @@
         </li>
       </ul>
     </div>
-    <div class="chat-box bg-white">
-      <div class="input-group">
+    <!--</div>-->
+    <div class="chat-box bg-white" style="position: fixed; bottom:0; padding: 15px;">
+      <div class="input-group" >
         <input class="form-control border no-shadow no-rounded" placeholder="Type your message here" v-model="reply_content">
-        <span class="input-group-btn">
+        <span class="input-group-btn" style="margin: 0 15px 0 0;">
           <button class="btn btn-success no-rounded" type="button" v-on:click="reply()">Send</button>
         </span>
       </div><!-- /input-group -->
