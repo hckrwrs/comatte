@@ -122,6 +122,7 @@ router.map({
           }).done(function (data, status, xhr) {
             self.guchis.unshift(data);
           });
+          this.guchi_text = "";
         },
       },
     }),
@@ -138,7 +139,7 @@ router.map({
         };
       },
       created: function () {
-        self.fetch_guchi();
+        this.fetch_guchi();
       },
       methods: {
         fetch_guchi: function () {
