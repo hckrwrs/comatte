@@ -136,7 +136,8 @@ router.map({
       template: '#guchi',
       data: function () {
         return {
-          guchi: {}
+          guchi: {},
+          timeago: '',
         };
       },
       created: function () {
@@ -147,6 +148,7 @@ router.map({
         fetch_guchi: function () {
           var guchi_id = this.$route.params.guchi_id;
           var self = this;
+          timeago = 
           $.ajax({
             url: create_url('/guchis/' + guchi_id)
           }).done(function (data) {
@@ -172,10 +174,17 @@ router.map({
           replies: [],
           reply_content: '',
           guchi_id: '',
+          deai_user:[],
         }
       },
       created: function () {
-         set_polling(this.fetch_replies);
+        var self = this;
+        $.ajax({
+          url: create_url('/deai_users/' + this.$route.params.deai_user_id),
+        }).done(function (data, status, xhr) {
+          self.deai_user = data.data;
+        });
+        set_polling(this.fetch_replies);
         this.fetch_replies();
       },
       methods: {
