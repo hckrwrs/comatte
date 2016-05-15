@@ -160,11 +160,11 @@
         </li>
       </ul>
     </div>
-    <div class="chat-box bg-white">
+    <div class="chat-box bg-white"　 style="position: fixed; bottom: 10px;">
       <div class="input-group">
         <input class="form-control border no-shadow no-rounded" placeholder="Type your message here" v-model="reply_content">
         <span class="input-group-btn">
-          <button class="btn btn-success no-rounded" type="button" v-on:click="reply()">Send</button>
+          <button class="btn btn-success no-rounded" type="button" v-on:click="reply()" style="margin-right: 10px;">Send</button>
         </span>
       </div><!-- /input-group -->
     </div>
