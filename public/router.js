@@ -156,10 +156,53 @@ router.map({
     }),
     auth: true
   },
-  '/guchis/:guchi_id/replies': {
+  '/guchis/:guchi_id/replies/:deai_user_id': {
     name: 'replies',
     component: Vue.extend({
-      template: '#replies'
+      template: '#replies',
+      data: function () {
+        return {
+          replies: [],
+          reply_content: ''
+        }
+      },
+      created: function () {
+        this.fetch_replies();
+      },
+      methods: {
+        fetch_replies: function () {
+          var guchi_id = this.$route.params.guchi_id;
+          var deai_user_id = this.$route.params.deai_user_id
+          var self = this;
+          $.ajax({
+            url: create_url('/replies'),
+            data: JSON.stringify({
+              guchi_id: guchi_id,
+              deai_user_id: deai_user_id
+            })
+          }).done(function (data) {
+            self.replies = data;
+          });
+        },
+        reply: function () {
+          var reply_content = this.reply_content;
+          var guchi_id = this.$route.params.guchi_id;
+          var deai_user_id = this.$route.params.deai_user_id
+          var self = this;
+
+          $.ajax({
+            url: create_url('/replies/create'),
+            data: JSON.stringify({
+              guchi_id: guchi_id,
+              deai_user_id: deai_user_id,
+              content: reply_content
+            }),
+          }).done(function (data) {
+            self.fetch_replies();
+            self.reply_content = '';
+          })
+        }
+      }
     }),
     auth: true
   },
