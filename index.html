@@ -93,7 +93,7 @@
 </script>
 
 <script id="guchis" type="text/template">
-  <g-header title="Home"></g-header>
+  <g-header title="いままでのグチ"></g-header>
 
   <div class="panel panel-default">
     <div class="panel-body">
@@ -125,7 +125,7 @@
 </script>
 
 <script id="guchi" type="text/template">
-  <g-header title="Comments" path="/guchis"></g-header>
+  <g-header title="かまってくれた人" path="/guchis"></g-header>
   <div class="panel" v-for="reply in guchi.replies">
     <a v-link="{name: 'replies', params: {guchi_id: guchi.id, deai_user_id: reply.deai_user_id}}">
       <div class="panel-body">
@@ -152,7 +152,7 @@
         <li class="{{reply.is_guching ? 'right' : 'left'}} clearfix" v-for="reply in replies" style="padding-left: 0;">
           <div class="chat-body clearfix" style="margin: 0;">
             <div>
-              <small class="pull-{{reply.is_guching ? 'right' : 'left'}} text-muted"><i class="fa fa-clock-o"></i> 12 mins ago</small>
+              <small class="pull-{{reply.is_guching ? 'right' : 'left'}} text-muted"><i class="fa fa-clock-o"></i>{{reply.created_at}}</small>
             </div><br>
             <p class="{{reply.is_guching ? 'text-success' : ''}}">{{reply.content}}</p>
           </div>

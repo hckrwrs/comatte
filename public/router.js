@@ -111,7 +111,7 @@ router.map({
             self.guchis = data;
             // console.log(self.guchis);
             self.guchis.forEach(function (data) {
-              console.log(data);
+              // console.log(data);
               data.created_at = jQuery.timeago(data.created_at);
             })
           }).fail(function () {
@@ -198,7 +198,7 @@ router.map({
           this.guchi_id = guchi_id;
           var deai_user_id = this.$route.params.deai_user_id
           var self = this;
-          console.log(this);
+          // console.log(this);
           $.ajax({
             url: create_url('/replies'),
             data: JSON.stringify({
@@ -207,6 +207,10 @@ router.map({
             })
           }).done(function (data) {
             self.replies = data;
+              self.replies.forEach(function (rep) {
+                rep.created_at = jQuery.timeago(rep.created_at);
+                // console.log(rep.created_at);
+              });
           });
         },
         reply: function () {
