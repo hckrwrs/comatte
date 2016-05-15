@@ -103,10 +103,10 @@
         <div class="media">
           <img :src=user.icon.value class="thumbnail pull-left" style="width:32px; height:32px;"></img>
             <div class="media-body">
-              <input type="text" class="form-control input-sm" placeholder="なにがあったの？" style="height:36px;" v-model="guchi_text">
+              <input type="text" class="form-control input-sm" placeholder="なにがあったの？" style="height:36px; width: 100%;">
             </div>
         </div>
-        <button type="submit" class="btn btn-sm btn-success" @click="guchiru()">グチる</button>
+        <button type="submit" class="btn btn-sm btn-success pull-right">グチる</button>
       </form>
     </div>
   </div>
@@ -132,13 +132,13 @@
     <a href="#!/replies">
       <div class="panel-body">
         <div class="clearfix">
-          <img src="img/user.jpg" class="img-circle" style="width:100px;" alt="User Avatar">
+          <img :src="reply.deai_user.icon.value" class="img-circle" style="width:32px; height: 32px;" alt="User Avatar">
           <span class="badge badge-info pull-right">3</span>
           <strong class="block">{{reply.deai_user.name}}</strong>
-          <small class="text-muted">{{reply.created_at}</small>
+          <small class="text-muted">{{reply.created_at}}</small>
         </div>
         <div class="seperator"></div>
-        <p>TODO: 最新のメッセージ</p>
+        <p>{{reply.content}}</p>
       </div>
     </a>
   </div>

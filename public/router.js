@@ -8,7 +8,7 @@ var URL_BASE = 'http://seishun-api.pocke.me';
 function create_url(endpoint) {
   // TODO: ここを書き換えてURL作る
   // return '/api/guchi' + endpoint
-  return URL_BASE + '/guchi/' + endpoint;
+  return URL_BASE + '/guchi' + endpoint;
 }
 
 var MasterData = $.ajax({
@@ -138,12 +138,19 @@ router.map({
       },
       created: function () {
         var guchi_id = this.$route.params.guchi_id;
+        var self = this;
         $.ajax({
           url: create_url('/guchis/' + guchi_id)
         }).done(function (data) {
-          // TODO: なぜか表示されない
-          console.log(data);
           self.guchi = data.data;
+          self.guchi.replies.forEach(function (rep) {
+            $.ajax({
+              url: create_url('/deai_users/' + rep.deai_user_id),
+            }).done(function (data, status, xhr) {
+              console.log(data.data);
+              Vue.set(rep, 'deai_user', data.data);
+            });
+          });
         });
       }
     }),
