@@ -37,7 +37,7 @@
       </h2>
     </div>
     <div class="login-widget animation-delay1">
-      <div class="panel panel-default">
+      <div class="panel panel-default" style="width: 50%;">
         <div class="panel-body">
           <form class="form-login text-center">
             <div class="form-group">
@@ -62,18 +62,17 @@
     <div class="panel-body">
       <form>
         <div class="form-group">
-          <label for="selectNickname">ニックネーム</label>
-          <input type="text" class="form-control input-sm" id="nickname" placeholder="Enter your nickname">
+          <label for="selectNickname">ニックネーム</label><br>
+          <input type="text" class="form-control input-sm" id="nickname"placeholder="Enter your nickname">
         </div>
         <div class="form-group">
-          <label for="selectIcon">アイコン</label>
-          <div class="col-lg-10">
+          <label for="selectIcon">アイコン</label><br>
             <select class="form-control chzn-select" v-model="selected">
               <option v-for="Icon in icons" v-bind:value="Icon.value">{{Icon.name}}</option>
             </select>
-            <input type="radio" :value="Icon.id"><img :src="selected"></img>
-          </div>
-
+            <input type="radio" :value="Icon.id"></input>
+            <p style="margin-bottom:1em;" ></p>
+            <img :src="selected"></img>
         </div>
         <div class="form-group">
           <label class="col-lg-2 control-label">性別</label>
@@ -88,8 +87,7 @@
               <span class="custom-radio"></span>
               女性
             </label>
-          </div><!-- /.col -->
-        <button type="submit" class="btn btn-success btn-sm">Submit</button>
+          </div>
       </form>
       <a class="btn btn-success btn-sm bounceIn animation-delay5 login-link pull-right" v-on:click="sign_up()"><i class="fa fa-sign-in"></i> Sign up</a>
     </div>
@@ -102,17 +100,13 @@
   <div class="panel panel-default">
     <div class="panel-body">
       <form class="form-inline no-margin">
-<!--        <div class="form-group">
-          <img :src=user.icon.value class="pull-left" style="width:32px; height:32px;"></img>
-          <input type="text" class="form-control input-sm" placeholder="なにがあったの？" style="height:36px;">
-        </div>-->
         <div class="media">
           <img :src=user.icon.value class="thumbnail pull-left" style="width:32px; height:32px;"></img>
             <div class="media-body">
-              <input type="text" class="form-control input-sm" placeholder="なにがあったの？" style="height:36px;" v-model="guchi_text">
+              <input type="text" class="form-control input-sm" placeholder="なにがあったの？" style="height:36px; width: 100%;">
             </div>
         </div>
-        <button type="submit" class="btn btn-sm btn-success" @click="guchiru()">グチる</button>
+        <button type="submit" class="btn btn-sm btn-success pull-right">グチる</button>
       </form>
     </div>
   </div>
@@ -138,7 +132,7 @@
     <a v-link="{name: 'replies', params: {guchi_id: guchi.id, deai_user_id: reply.deai_user_id}}">
       <div class="panel-body">
         <div class="clearfix">
-          <img :src="reply.deai_user.icon.value" class="img-circle" style="width:100px;" alt="User Avatar">
+          <img :src="reply.deai_user.icon.value" class="img-circle" style="width:32px; height: 32px;" alt="User Avatar">
           <span class="badge badge-info pull-right">3</span>
           <strong class="block">{{reply.deai_user.name}}</strong>
           <small class="text-muted">{{reply.created_at}}</small>
