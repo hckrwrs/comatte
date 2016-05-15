@@ -37,7 +37,7 @@
       </h2>
     </div>
     <div class="login-widget animation-delay1">
-      <div class="panel panel-default">
+      <div class="panel panel-default" style="width: 50%;">
         <div class="panel-body">
           <form class="form-login text-center">
             <div class="form-group">
@@ -62,18 +62,17 @@
     <div class="panel-body">
       <form>
         <div class="form-group">
-          <label for="selectNickname">ニックネーム</label>
-          <input type="text" class="form-control input-sm" id="nickname" placeholder="Enter your nickname">
+          <label for="selectNickname">ニックネーム</label><br>
+          <input type="text" class="form-control input-sm" id="nickname"placeholder="Enter your nickname">
         </div>
         <div class="form-group">
-          <label for="selectIcon">アイコン</label>
-          <div class="col-lg-10">
+          <label for="selectIcon">アイコン</label><br>
             <select class="form-control chzn-select" v-model="selected">
               <option v-for="Icon in icons" v-bind:value="Icon.value">{{Icon.name}}</option>
             </select>
-            <input type="radio" :value="Icon.id"><img :src="selected"></img>
-          </div>
-
+            <input type="radio" :value="Icon.id"></input>
+            <p style="margin-bottom:1em;" ></p>
+            <img :src="selected"></img>
         </div>
         <div class="form-group">
           <label class="col-lg-2 control-label">性別</label>
@@ -88,8 +87,7 @@
               <span class="custom-radio"></span>
               女性
             </label>
-          </div><!-- /.col -->
-        <button type="submit" class="btn btn-success btn-sm">Submit</button>
+          </div>
       </form>
       <a class="btn btn-success btn-sm bounceIn animation-delay5 login-link pull-right" v-on:click="sign_up()"><i class="fa fa-sign-in"></i> Sign up</a>
     </div>
