@@ -170,7 +170,8 @@ router.map({
       data: function () {
         return {
           replies: [],
-          reply_content: ''
+          reply_content: '',
+          guchi_id: '',
         }
       },
       created: function () {
@@ -180,8 +181,10 @@ router.map({
       methods: {
         fetch_replies: function () {
           var guchi_id = this.$route.params.guchi_id;
+          this.guchi_id = guchi_id;
           var deai_user_id = this.$route.params.deai_user_id
           var self = this;
+          console.log(this);
           $.ajax({
             url: create_url('/replies'),
             data: JSON.stringify({

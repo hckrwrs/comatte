@@ -100,9 +100,9 @@
       <form class="form-inline no-margin">
         <div class="media">
           <img :src=user.icon.value class="thumbnail pull-left" style="width:32px; height:32px;">
-            <div class="media-body">
-              <input type="text" class="form-control input-sm" placeholder="なにがあったの？" style="height:36px; width: 100%;" v-model="guchi_text">
-            </div>
+          <div class="media-body">
+            <input type="text" class="form-control input-sm" placeholder="なにがあったの？" style="height:36px; width: 100%;" v-model="guchi_text">
+          </div>
         </div>
         <button type="submit" class="btn btn-sm btn-success pull-right" @click="guchiru()">グチる</button>
       </form>
@@ -113,12 +113,12 @@
     <a v-link="{ name: 'guchi', params: {guchi_id: guchi.id} }">
       <div class="panel-body">
         <div class="clearfix">
-          <span class="label label-danger pull-right">new!!</span>
+          <span class="label label-danger pull-right"></span>
         </div>
         <div class="seperator"></div>
         <p>{{guchi.content}}</p>
         <div class="text-muted">{{guchi.created_at}}</div>
-        <div class="badge badge-info" style="float: right">3</div>
+        <div class="badge badge-info" style="float: right"></div>
       </div>
     </a>
   </div>
@@ -131,7 +131,7 @@
       <div class="panel-body">
         <div class="clearfix">
           <img :src="reply.deai_user.icon.value" class="img-circle" style="width:32px; height: 32px; float: left" alt="User Avatar">
-          <span class="badge badge-info pull-right">3</span>
+          <span class="badge badge-info pull-right"></span>
           <strong class="block">{{reply.deai_user.name}}</strong>
           <small class="text-muted">{{reply.created_at}}</small>
         </div>
@@ -144,7 +144,7 @@
 
 <script id="replies" type="text/template">
   <div class="chat chat-inner">
-    <g-header title="Hhread" path="/guchi"></g-header>
+    <g-header title="Hhread" :path="'/guchis/' + guchi_id"></g-header>
 
     <!--<div class="chat-message">-->
     <div>
@@ -159,12 +159,11 @@
         </li>
       </ul>
     </div>
-    <!--</div>-->
-    <div class="chat-box bg-white" style="position: fixed; bottom:0; padding: 15px;">
-      <div class="input-group" >
+    <div class="chat-box bg-white"　 style="position: fixed; bottom: 10px;">
+      <div class="input-group">
         <input class="form-control border no-shadow no-rounded" placeholder="Type your message here" v-model="reply_content">
-        <span class="input-group-btn" style="margin: 0 15px 0 0;">
-          <button class="btn btn-success no-rounded" type="button" v-on:click="reply()">Send</button>
+        <span class="input-group-btn">
+          <button class="btn btn-success no-rounded" type="button" v-on:click="reply()" style="margin-right: 10px;">Send</button>
         </span>
       </div><!-- /input-group -->
     </div>
