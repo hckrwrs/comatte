@@ -137,18 +137,22 @@ router.map({
         };
       },
       created: function () {
-        var guchi_id = this.$route.params.guchi_id;
-        var self = this;
-        $.ajax({
-          url: create_url('/guchis/' + guchi_id)
-        }).done(function (data) {
-          self.guchi = data.data;
-          self.guchi.replies.forEach(function (rep) {
-            $.ajax({
-              url: create_url('/deai_users/' + rep.deai_user_id),
-            }).done(function (data, status, xhr) {
-              console.log(data.data);
-              Vue.set(rep, 'deai_user', data.data);
+        fetch_guchi();
+      },
+      methods: {
+        fetch_guchi: function () {
+          var guchi_id = this.$route.params.guchi_id;
+          var self = this;
+          $.ajax({
+            url: create_url('/guchis/' + guchi_id)
+          }).done(function (data) {
+            self.guchi = data.data;
+            self.guchi.replies.forEach(function (rep) {
+              $.ajax({
+                url: create_url('/deai_users/' + rep.deai_user_id),
+              }).done(function (data, status, xhr) {
+                Vue.set(rep, 'deai_user', data.data);
+              });
             });
           });
         });
