@@ -109,6 +109,11 @@ router.map({
             url: create_url('/guchis')
           }).done(function (data) {
             self.guchis = data;
+            // console.log(self.guchis);
+            self.guchis.forEach(function (data) {
+              console.log(data);
+              data.created_at = jQuery.timeago(data.created_at);
+            })
           }).fail(function () {
             // XXX: セッション切れてる？
           });
@@ -137,7 +142,6 @@ router.map({
       data: function () {
         return {
           guchi: {},
-          timeago: '',
         };
       },
       created: function () {
@@ -148,12 +152,12 @@ router.map({
         fetch_guchi: function () {
           var guchi_id = this.$route.params.guchi_id;
           var self = this;
-          timeago = 
           $.ajax({
             url: create_url('/guchis/' + guchi_id)
           }).done(function (data) {
             self.guchi = data.data;
             self.guchi.replies.forEach(function (rep) {
+              rep.created_at = jQuery.timeago(rep.created_at);
               $.ajax({
                 url: create_url('/deai_users/' + rep.deai_user_id),
               }).done(function (data, status, xhr) {
