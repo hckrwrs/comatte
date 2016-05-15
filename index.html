@@ -138,7 +138,7 @@
     <a href="#!/replies">
       <div class="panel-body">
         <div class="clearfix">
-          <img src="img/user.jpg" class="img-circle" style="width:100px;" alt="User Avatar">
+          <img :src="reply.deai_user.icon.value" class="img-circle" style="width:100px;" alt="User Avatar">
           <span class="badge badge-info pull-right">3</span>
           <strong class="block">{{reply.deai_user.name}}</strong>
           <small class="text-muted">{{reply.created_at}}</small>
