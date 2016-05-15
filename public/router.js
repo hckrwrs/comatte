@@ -121,8 +121,8 @@ router.map({
             }),
           }).done(function (data, status, xhr) {
             self.guchis.unshift(data);
-            selt.guchis_text = "";
           });
+          this.guchi_text = "";
         },
       },
     }),
