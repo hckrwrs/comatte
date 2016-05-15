@@ -138,7 +138,7 @@ router.map({
         };
       },
       created: function () {
-        fetch_guchi();
+        self.fetch_guchi();
       },
       methods: {
         fetch_guchi: function () {
