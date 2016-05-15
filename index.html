@@ -151,10 +151,10 @@
       <ul class="chat" style="padding: 30;">
         <li class="{{reply.is_guching ? 'right' : 'left'}} clearfix" v-for="reply in replies" style="padding-left: 0;">
           <div class="chat-body clearfix" style="margin: 0;">
-            <div class="header">
+            <div>
               <small class="pull-{{reply.is_guching ? 'right' : 'left'}} text-muted"><i class="fa fa-clock-o"></i> 12 mins ago</small>
-            </div>
-            <p>{{reply.content}}</p>
+            </div><br>
+            <p class="{{reply.is_guching ? 'text-success' : ''}}">{{reply.content}}</p>
           </div>
         </li>
       </ul>

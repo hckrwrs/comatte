@@ -175,7 +175,7 @@ router.map({
         }
       },
       created: function () {
-         set_polling(this.fetch_replies);
+        // set_polling(this.fetch_replies);
         this.fetch_replies();
       },
       methods: {
