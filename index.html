@@ -129,10 +129,10 @@
 <script id="guchi" type="text/template">
   <g-header title="Comments" path="/guchis"></g-header>
   <div class="panel" v-for="reply in guchi.replies">
-    <a href="#!/replies">
+    <a v-link="{name: 'replies', params: {guchi_id: guchi.id, deai_user_id: reply.deai_user_id}}">
       <div class="panel-body">
         <div class="clearfix">
-          <img :src="reply.deai_user.icon.value" class="img-circle" style="width:32px; height: 32px;" alt="User Avatar">
+          <img :src="reply.deai_user.icon.value" class="img-circle" style="width:32px; height: 32px; float: left" alt="User Avatar">
           <span class="badge badge-info pull-right">3</span>
           <strong class="block">{{reply.deai_user.name}}</strong>
           <small class="text-muted">{{reply.created_at}}</small>
@@ -147,131 +147,24 @@
 <script id="replies" type="text/template">
   <div class="chat chat-inner">
     <g-header title="Hhread" path="/guchi"></g-header>
-    <div class="chat-header bg-white border-bottom padding-sm" style="height: 40px;">
-      はなみずつらいさん
-    </div>
 
     <div class="chat-message">
       <ul class="chat">
-        <li class="left clearfix">
-          <span class="chat-img pull-left">
-            <img src="img/user.jpg" alt="User Avatar">
-          </span>
+        <li class="{{reply.is_guching ? 'right' : 'left'}} clearfix" v-for="reply in replies">
           <div class="chat-body clearfix">
             <div class="header">
-              <strong class="primary-font">John Doe</strong>
-              <small class="pull-right text-muted"><i class="fa fa-clock-o"></i> 12 mins ago</small>
+              <small class="pull-{{reply.is_guching ? 'right' : 'left'}} text-muted"><i class="fa fa-clock-o"></i> 12 mins ago</small>
             </div>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            </p>
-          </div>
-        </li>
-        <li class="right clearfix">
-          <span class="chat-img pull-right">
-            <img src="img/user3.jpg" alt="User Avatar">
-          </span>
-          <div class="chat-body clearfix">
-            <div class="header">
-              <strong class="primary-font">Sarah</strong>
-              <small class="pull-right text-muted"><i class="fa fa-clock-o"></i> 13 mins ago</small>
-            </div>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales at.
-            </p>
-          </div>
-        </li>
-        <li class="left clearfix">
-          <span class="chat-img pull-left">
-            <img src="img/user4.jpg" alt="User Avatar">
-          </span>
-          <div class="chat-body clearfix">
-            <div class="header">
-              <strong class="primary-font">Angelina</strong>
-              <small class="pull-right text-muted"><i class="fa fa-clock-o"></i> 20 mins ago</small>
-            </div>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            </p>
-          </div>
-        </li>
-        <li class="right clearfix">
-          <span class="chat-img pull-right">
-            <img src="img/user2.jpg" alt="User Avatar">
-          </span>
-          <div class="chat-body clearfix">
-            <div class="header">
-              <strong class="primary-font">Jane Doe</strong>
-              <small class="pull-right text-muted"><i class="fa fa-clock-o"></i> 25 mins ago</small>
-            </div>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales at.
-            </p>
-          </div>
-        </li>
-        <li class="left clearfix">
-          <span class="chat-img pull-left">
-            <img src="img/user5.jpg" alt="User Avatar">
-          </span>
-          <div class="chat-body clearfix">
-            <div class="header">
-              <strong class="primary-font">Kate</strong>
-              <small class="pull-right text-muted"><i class="fa fa-clock-o"></i> 12 mins ago</small>
-            </div>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            </p>
-          </div>
-        </li>
-        <li class="right clearfix">
-          <span class="chat-img pull-right">
-            <img src="img/user3.jpg" alt="User Avatar">
-          </span>
-          <div class="chat-body clearfix">
-            <div class="header">
-              <strong class="primary-font">Sarah</strong>
-              <small class="pull-right text-muted"><i class="fa fa-clock-o"></i> 13 mins ago</small>
-            </div>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales at.
-            </p>
-          </div>
-        </li>
-        <li class="left clearfix">
-          <span class="chat-img pull-left">
-            <img src="img/user.jpg" alt="User Avatar">
-          </span>
-          <div class="chat-body clearfix">
-            <div class="header">
-              <strong class="primary-font">John Doe</strong>
-              <small class="pull-right text-muted"><i class="fa fa-clock-o"></i> 20 mins ago</small>
-            </div>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            </p>
-          </div>
-        </li>
-        <li class="right clearfix">
-          <span class="chat-img pull-right">
-            <img src="img/user2.jpg" alt="User Avatar">
-          </span>
-          <div class="chat-body clearfix">
-            <div class="header">
-              <strong class="primary-font">Jane Doe</strong>
-              <small class="pull-right text-muted"><i class="fa fa-clock-o"></i> 25 mins ago</small>
-            </div>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales at.
-            </p>
+            <p>{{reply.content}}</p>
           </div>
         </li>
       </ul>
     </div>
     <div class="chat-box bg-white">
       <div class="input-group">
-        <input class="form-control border no-shadow no-rounded" placeholder="Type your message here">
+        <input class="form-control border no-shadow no-rounded" placeholder="Type your message here" v-model="reply_content">
         <span class="input-group-btn">
-          <button class="btn btn-success no-rounded" type="button">Send</button>
+          <button class="btn btn-success no-rounded" type="button" v-on:click="reply()">Send</button>
         </span>
       </div><!-- /input-group -->
     </div>
