@@ -129,6 +129,7 @@ router.map({
   },
   '/guchis/:guchi_id': {
     name: 'guchi',
+    auth: true,
     component: Vue.extend({
       template: '#guchi',
       data: function () {
@@ -155,10 +156,9 @@ router.map({
               });
             });
           });
-        });
+        }
       }
     }),
-    auth: true
   },
   '/guchis/:guchi_id/replies/:deai_user_id': {
     name: 'replies',
