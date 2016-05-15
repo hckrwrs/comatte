@@ -143,6 +143,14 @@ router.map({
           url: create_url('/guchis/' + guchi_id)
         }).done(function (data) {
           self.guchi = data.data;
+          self.guchi.replies.forEach(function (rep) {
+            $.ajax({
+              url: create_url('/deai_users/' + rep.deai_user_id),
+            }).done(function (data, status, xhr) {
+              console.log(data.data);
+              Vue.set(rep, 'deai_user', data.data);
+            });
+          });
         });
       }
     }),
